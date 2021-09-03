@@ -4,8 +4,7 @@
 #include <stdint.h>
 #include "exceptions.h"
 
-class I2CBus
-{
+class I2CBus{
 public:
     I2CBus(const char * deviceName);
     ~I2CBus();
@@ -16,8 +15,7 @@ public:
     int tryReadByte(uint8_t command);
     void readBlock(uint8_t command, uint8_t size, uint8_t * data);
 
-    int tryReadByte(uint8_t address, uint8_t command)
-    {
+    int tryReadByte(uint8_t address, uint8_t command){
         addressSet(address);
         return tryReadByte(command);
     }

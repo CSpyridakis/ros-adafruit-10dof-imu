@@ -2,11 +2,15 @@
 
 LSM303DLHC_Accelerometer::LSM303DLHC_Accelerometer(const char * i2cDeviceFilePath) : i2cObject(i2cDeviceFilePath) {
   i2cObject.addressSet(LSM303DLHC_ACC_I2C_ADDRESS);
+  ROS_INFO("Accelerometer initialized!\n"); 
+
 }
 
 void LSM303DLHC_Accelerometer::begin(void) {
+  ROS_INFO("[Accelerometer] (begin)");
   i2cObject.writeByte(LSM303DLHC_CTRL_REG1, LSM303DLHC_CTRL_REG1_VALUE);
   i2cObject.writeByte(LSM303DLHC_CTRL_REG4, LSM303DLHC_CTRL_REG4_VALUE);
+  ROS_INFO("-----------------------------\n"); 
 }
 
 void LSM303DLHC_Accelerometer::read(void) {

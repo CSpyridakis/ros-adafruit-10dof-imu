@@ -12,7 +12,7 @@ add_definitions(-std=c++11)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   sensor_msgs
-  message_generation
+  # message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -70,10 +70,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-generate_messages(
-  DEPENDENCIES
-  sensor_msgs
-)
+# generate_messages(
+#   DEPENDENCIES
+#   sensor_msgs
+# )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -139,7 +139,8 @@ include_directories(
 # add_executable(${PROJECT_NAME}_node src/adafruit_10dof_imu_node.cpp)
 add_executable(imuout src/talker.cpp)
 target_link_libraries(imuout ${catkin_LIBRARIES})
-add_dependencies(imuout adafruit_10dof_imu_generate_messages_cpp)
+target_link_libraries(imuout i2c)
+# add_dependencies(imuout adafruit_10dof_imu_generate_messages_cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the

@@ -13,8 +13,9 @@
 /**
  * This tutorial demonstrates simple sending of messages over the ROS system.
  */
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv){
+
+  ROS_INFO("Begin imuout node...\n");
   const char* i2cDevice = "/dev/i2c-1";
   LSM303DLHC_Magnetometer mag(i2cDevice);
   LSM303DLHC_Accelerometer acc(i2cDevice);
@@ -23,6 +24,7 @@ int main(int argc, char **argv)
   gyr.begin();
   mag.begin();
   acc.begin();
+  ROS_INFO("Gyroscope, magnetometer and accelerometor initialized!");
 
   /**
    * The ros::init() function needs to see argc and argv so that it can perform
@@ -61,6 +63,7 @@ int main(int argc, char **argv)
    * buffer up before throwing some away.
    */
   ros::Publisher chatter_pub = n.advertise<sensor_msgs::Imu>("chatter", 100);
+  ROS_INFO("Chatter publisher created");
 
   ros::Rate loop_rate(10);
 
@@ -92,9 +95,9 @@ int main(int argc, char **argv)
     imu.angular_velocity.x = gyr.raw.x;
     imu.angular_velocity.y = gyr.raw.y;
     imu.angular_velocity.z = gyr.raw.z;
-    imu.linear_acceleration.x = 1.0;
-    imu.linear_acceleration.y = 1.0;
-    imu.linear_acceleration.z = 1.0;
+    imu.linear_acceleration.x = acc.raw.x;
+    imu.linear_acceleration.y = acc.raw.y;
+    imu.linear_acceleration.z = acc.raw.z;
     /**
      * The publish() function is how you send messages. The parameter
      * is the message object. The type of this object must agree with the type

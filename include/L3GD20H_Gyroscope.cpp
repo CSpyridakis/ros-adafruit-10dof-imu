@@ -2,9 +2,11 @@
 
 L3GD20H_Gyroscope::L3GD20H_Gyroscope(const char * i2cDeviceFilePath) : i2cObject(i2cDeviceFilePath) {
   i2cObject.addressSet(L3GD20H_GYRO_I2C_ADDRESS);
+  ROS_INFO("Gyroscope initialized!\n"); 
 }
 
 void L3GD20H_Gyroscope::begin(void) {
+  ROS_INFO("[Gyroscope] (begin)");
   /* Set CTRL_REG1 (0x20)
    ====================================================================
    BIT  Symbol    Description                                   Default
@@ -37,6 +39,7 @@ void L3GD20H_Gyroscope::begin(void) {
   /* Adjust resolution if requested */
   i2cObject.writeByte(L3GD20H_REGISTER_CTRL_REG4, 0x20);
   /* ------------------------------------------------------------------ */
+  ROS_INFO("-----------------------------\n"); 
 }
 
 void L3GD20H_Gyroscope::read(void) {

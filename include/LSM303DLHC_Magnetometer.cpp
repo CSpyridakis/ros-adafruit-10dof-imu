@@ -2,11 +2,12 @@
 
 LSM303DLHC_Magnetometer::LSM303DLHC_Magnetometer(const char * i2cDeviceFilePath) : i2cObject(i2cDeviceFilePath) {
   i2cObject.addressSet(LSM303DLHC_MAG_I2C_ADDRESS);
+  ROS_INFO("Magnetometer initialized!\n"); 
 }
 
 void LSM303DLHC_Magnetometer::begin(void) {
+  ROS_INFO("[Magnetometer] (begin)"); 
   i2cObject.writeByte(LSM303DLHC_MR_REG_M, LSM303DLHC_MR_REG_M_VALUE);
-
   setMagRate();
 }
 
@@ -19,11 +20,15 @@ void LSM303DLHC_Magnetometer::read(void) {
 }
 
 void LSM303DLHC_Magnetometer::setMagRate(void) {
+  ROS_INFO("[Magnetometer] (setMatRate)"); 
   i2cObject.writeByte(LSM303DLHC_CRA_REG_M, LSM303DLHC_CRA_REG_M_VALUE);
+  ROS_INFO("-----------------------------\n"); 
 }
 
 void LSM303DLHC_Magnetometer::setMagGain(void) {
+  ROS_INFO("[Magnetometer] (setMagGain)"); 
   i2cObject.writeByte(LSM303DLHC_CRB_REG_M, LSM303DLHC_CRB_REG_M_VALUE);
+  ROS_INFO("-----------------------------\n"); 
 }
 
 bool LSM303DLHC_Magnetometer::verifyConnection(void) {

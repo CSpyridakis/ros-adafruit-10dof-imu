@@ -5,7 +5,7 @@
 #include "I2CBus.h"
 
 /* Device I2C Address */
-#define L3GD20H_GYRO_I2C_ADDRESS   0x6B
+#define L3GD20H_GYRO_I2C_ADDRESS   0x69
 
 /* Register Addresses */
 #define L3GD20H_REGISTER_WHO_AM_I  0x0F
